@@ -1,7 +1,7 @@
 # Builder stage
 FROM debian:latest
 
-RUN apt update &&  apt install curl -y
+RUN apt update &&  apt install curl wget tmux sudo bash psmisc procps -y
 RUN curl -fsSL https://ollama.com/install.sh | sh
 ENV OLLAMA_HOST=0.0.0.0
 RUN useradd -m appuser && chown -R appuser:appuser /home/appuser
