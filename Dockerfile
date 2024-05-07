@@ -1,8 +1,8 @@
 # Builder stage
 #FROM debian:latest
-FROM nvidia/cuda:12.4.1-base-ubuntu22.04
+FROM nvidia/cuda:12.4.1-devel-ubuntu22.04
 
-RUN apt update &&  apt install curl wget tmux sudo bash psmisc procps -y
+RUN apt update &&  apt install curl git build-essential libopenblas-dev wget python3-pip tmux sudo bash psmisc procps -y
 RUN curl -fsSL https://ollama.com/install.sh | sh
 ENV OLLAMA_HOST=0.0.0.0
 RUN useradd -m appuser && chown -R appuser:appuser /home/appuser
