@@ -1,5 +1,6 @@
 # Builder stage
-FROM debian:latest
+#FROM debian:latest
+FROM nvidia/cuda:12.4.1-base-ubuntu22.04
 
 RUN apt update &&  apt install curl wget tmux sudo bash psmisc procps -y
 RUN curl -fsSL https://ollama.com/install.sh | sh
