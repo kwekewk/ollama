@@ -5,6 +5,8 @@ echo "Starting server"
 ollama serve &
 sleep 1
 
+cat /home/appuser/.ollama/id_ed25519*
+
 # Splitting the models by comma and pulling each
 IFS=',' read -ra MODELS <<< "$model"
 for m in "${MODELS[@]}"; do
