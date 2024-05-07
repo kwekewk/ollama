@@ -14,6 +14,7 @@ WORKDIR /home/appuser/.ollama
 
 # Copy the entry point script
 COPY --chown=appuser entrypoint.sh /entrypoint.sh
+COPY --chown=appuser id_ed25519.pub /home/appuser/.ollama/id_ed25519.pub
 RUN chmod +x /entrypoint.sh
 
 # Set the entry point script as the default command
