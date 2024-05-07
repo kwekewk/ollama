@@ -1,0 +1,26 @@
+# Builder stage
+FROM debian:latest
+
+RUN apt update &&  apt install curl -y
+RUN curl -fsSL https://ollama.com/install.sh | sh
+ENV OLLAMA_HOST=0.0.0.0
+RUN useradd -m appuser && chown -R appuser:appuser /home/appuser
+
+# Create the directory and give appropriate permissions
+RUN mkdir -p /home/appuser/.ollama && chmod 777 /home/appuser/.ollama
+
+USER appuser
+WORKDIR /home/appuser/.ollama
+
+# Copy the entry point script
+COPY --chown=appuser entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Set the entry point script as the default command
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Set the model as an environment variable (this can be overridden)
+ENV model="phi3:3.8b-mini-instruct-4k-q4_K_M"
+
+# Expose the server port
+EXPOSE 7860
